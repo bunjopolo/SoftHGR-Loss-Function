@@ -49,7 +49,7 @@ def SoftHgr3D(x, y):
     for f_xi, g_yi in zip(f, g):
         transpose_f = f_xi.permute(0, 2, 1)
         # added max
-        hgr_objective += torch.max(torch.matmul(transpose_f, g_yi)) - 0.5 * trace3d(torch.matmul(cov_f, cov_g))
+        hgr_objective += torch.mean(torch.matmul(transpose_f, g_yi)) - 0.5 * trace3d(torch.matmul(cov_f, cov_g))
     hgr_objective = hgr_objective / (m - 1)
 
     return hgr_objective
